@@ -52,20 +52,19 @@ def get_readable_time(seconds: int) -> str:
 
 
 PM_START_TEXT = """
-Hi {}, my name is {}! ❣️ 
-I am a group management bot I can help you to manage your group.
-I can give you lewd and nsfw pictures too ❣️ 
-You can find my list of available commands with /help
+Salam {}, mən Yupiter Bot'am! 🪐
+Mən sadə qrup idarə botuyam və sənə qrupunu idarə etməkdə kömək edə bilərəm.
+Bütün əmrlərə baxmaq üçün /help toxun.
 
 """
 
 HELP_STRINGS = """
-Hey there! My name is *{}*.
-I can help admins manage their groups with Your Love❣️! Have a look at the following for an idea of some of the things I can help you with.
-*Main* commands available:
- • /help: PM's you this message.
- • /help <module name>: PM's you info about that module.
- • /donate: information on how to donate!
+Bir daha Salam!Mən *Yupiter* Botam.
+Mən adminlərə qrupları sadə şəkildə idarə etməkdə kömək edirəm.Sənə kömək edə biləcəyim  şeylər haqqında bir fikir əldə etmək üçün aşağıya bax.
+ *Əsas* mövcud əmrlərim:
+ • /help:  Özəldə sənə bu mesajı göndərər.
+ • /help <modul adı>: Özəldə seçilmiş modul haqqında məlumat mesajı göndərər.
+ • /donate: Necə maddi dəstəkləyə biləcəyinizi göstərər.
 {}
 And the following:
 """.format(
@@ -74,8 +73,8 @@ And the following:
 
 SAITAMA_IMG = "https://telegra.ph/file/3030791a3ed7983532501.jpg"
 
-DONATE_STRING = """Heya, glad to hear you want to donate!
-Supporting him; [Hero](t.me/Yoga_CIC)"""
+DONATE_STRING = """Hey, Mənə dəstək verəcəyini eşidəndə çox sevindim 🙆!
+Zəhmət olmasa,dəstəklə; [Hero](t.me/jlbots)"""
 
 IMPORTED = {}
 MIGRATEABLE = []
@@ -140,7 +139,7 @@ def send_help(chat_id, text, keyboard=None):
 @run_async
 def test(update: Update, context: CallbackContext):
     # pprint(eval(str(update)))
-    # update.effective_message.reply_text("Hola tester! _I_ *have* `markdown`", parse_mode=ParseMode.MARKDOWN)
+    # update.effective_message.reply_text("Hola tester! _I_ *have* `markdown `", parse_mode=ParseMode.MARKDOWN)
     update.effective_message.reply_text("This person edited a message")
     print(update.effective_message)
 
@@ -193,17 +192,17 @@ def start(update: Update, context: CallbackContext):
                 reply_markup=InlineKeyboardMarkup(
                     [[
                         InlineKeyboardButton(
-                            text="Add Me 👰",
+                            text="Qrupa əlavə et 👰",
                             url="t.me/{}?startgroup=true".format(
                                 context.bot.username))
                     ],
                      [
                          InlineKeyboardButton(
-                             text="Support Group",
-                             url=f"https://t.me/YBotsSupport"),
+                             text="Dəstək Qrupu",
+                             url=f"https://t.me/jlbchat"),
                          InlineKeyboardButton(
                              text="📘 Logs",
-                             url="https://t.me/asunalogs")
+                             url="https://t.me/jlbchat")
                      ],
                      [
                          InlineKeyboardButton(
@@ -212,7 +211,7 @@ def start(update: Update, context: CallbackContext):
                      ]]))
     else:
         update.effective_message.reply_text(
-            "I'm online!\n<b>Up since:</b> <code>{}</code>".format(uptime),
+            "Mən işləyirəm!\n<b>Başlama vaxtı:</b> <code>{}</code>".format(uptime),
             parse_mode=ParseMode.HTML)
 
 
@@ -220,7 +219,7 @@ def start(update: Update, context: CallbackContext):
 def error_callback(update: Update, context: CallbackContext):
     error = context.error
     try:
-        raise error
+        raise erro
     except Unauthorized:
         print("no nono1")
         print(error)
@@ -259,7 +258,7 @@ def help_button(update, context):
     try:
         if mod_match:
             module = mod_match.group(1)
-            text = ("Here is the help for the *{}* module:\n".format(
+            text = ("Bu *{}* modulu üçün kömək meajıdır:\n".format(
                 HELPABLE[module].__mod_name__) + HELPABLE[module].__help__)
             query.message.edit_text(
                 text=text,
@@ -335,7 +334,7 @@ def get_help(update: Update, context: CallbackContext):
         send_help(
             chat.id, text,
             InlineKeyboardMarkup(
-                [[InlineKeyboardButton(text="Back",
+                [[InlineKeyboardButton(text="⏪Back",
                                        callback_data="help_back")]]))
 
     else:
